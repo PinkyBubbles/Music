@@ -2,7 +2,7 @@
     <div class="d-flex flex-column flex-shrink-0 p-3 w-50">
         @for (item of items$ | async; track $index) 
         {
-            <p (click)="onClickElement(item)">{{item.name}}</p>
+            <input type="button" name="{{item.name}}" ngDefaultControl (click)="onItemClick(item)" value="{{item.name}}"/>
         }
     </div>
 }

@@ -1,16 +1,16 @@
-@if(item$)
+@if(item$ | async; as item)
 {
     <div>
-        <p>{{(item$ | async)?.artist}}</p>
-        @if((item$ | async)?.songs)
+        <p>{{item.artist}}</p>
+        @if(item.songs)
         {
             <div>
-                @for(song of (item$ | async)?.songs; track song)
+                @for(song of item.songs; track song)
                 {
                     <p>{{song}}</p>
                 }
             </div>
         }
-        <p>{{(item$ | async)?.releaseDate}}</p>
+        <p>{{item.releaseDate}}</p>
     </div>
 }

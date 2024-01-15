@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DashboardListItem } from '../../models/dashboard-list-item-model';
 import { CommonModule, NgFor } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
 import { DashboardListComponent } from '../dashboard-list/dashboard-list.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-item-details',
@@ -12,9 +12,10 @@ import { DashboardListComponent } from '../dashboard-list/dashboard-list.compone
   styleUrl: './dashboard-item-details.component.css',
   providers: [DashboardListComponent]
 })
-export class DashboardItemDetailsComponent{
-
-  constructor(private dashboardList: DashboardListComponent){}
-
-  item$: BehaviorSubject<DashboardListItem> = this.dashboardList.clickedItem$;
+export class DashboardItemDetailsComponent implements OnInit{
+  @Input()
+  item$: Subject<DashboardListItem> = new Subject<DashboardListItem>();
+  ngOnInit(): void {
+    this.item$.subscribe(() => setTimeout(() => {}, 10));
+  }
 }

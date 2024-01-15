@@ -1,4 +1,4 @@
 <div>
-    <app-dashboard-list></app-dashboard-list>
-    <app-dashboard-item-details></app-dashboard-item-details>
+    <app-dashboard-list (clickedItem$)="onClickDashboardItem($event)"></app-dashboard-list>
+    <app-dashboard-item-details [item$]="dashboardListItem$"></app-dashboard-item-details>
 </div>
