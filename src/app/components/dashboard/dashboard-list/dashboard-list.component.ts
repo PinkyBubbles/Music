@@ -1,4 +1,4 @@
-import { Component, Injectable, Output } from '@angular/core';
+import { Component, Injectable, OnInit, Output } from '@angular/core';
 import { DashboardService } from '../../../services/dashboard-service/dashboard-service';
 import { DashboardListItem } from '../../models/dashboard-list-item-model';
 import { Observable } from 'rxjs/internal/Observable';
@@ -16,17 +16,20 @@ import { Subject } from 'rxjs';
   styleUrl: './dashboard-list.component.css',
   providers: [DashboardService]
 })
-export class DashboardListComponent {
+export class DashboardListComponent implements OnInit{
   
   constructor(private dashboardService: DashboardService){}
 
+  public itemList: DashboardListItem[] = [];
+
   @Output()
-  public clickedItem$: Subject<DashboardListItem> = new Subject<DashboardListItem>();
+  selectedItem: Subject<DashboardListItem> = new Subject<DashboardListItem>;
 
-  public items$: Observable<DashboardListItem[]> = this.dashboardService.items$;
+  public ngOnInit(): void {
+    this.dashboardService.items$.subscribe(items => this.itemList = items);
+  }
 
-  public onItemClick(item: DashboardListItem)
-  {
-    this.clickedItem$.next(item);
+  public onItemClick(item: DashboardListItem): void{
+    this.selectedItem.next(item);
   }
 }

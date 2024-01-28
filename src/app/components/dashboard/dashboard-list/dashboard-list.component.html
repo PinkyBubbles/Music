@@ -1,6 +1,6 @@
-@if(items$){
+@if(itemList){
     <div class="d-flex flex-column flex-shrink-0 p-3 w-50">
-        @for (item of items$ | async; track $index) 
+        @for (item of itemList; track $index) 
         {
             <input type="button" name="{{item.name}}" ngDefaultControl (click)="onItemClick(item)" value="{{item.name}}"/>
         }
