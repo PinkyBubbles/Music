@@ -11,8 +11,8 @@ import { DashboardListItem } from '../models/dashboard-list-item-model';
     imports: [DashboardListComponent, DashboardItemDetailsComponent]
 })
 export class DashboardComponent {
-    selectedItem: DashboardListItem = {} as DashboardListItem;
-    public DashboardItemSelected(item: DashboardListItem): void{
+    public selectedItem: DashboardListItem = {} as DashboardListItem;
+    public selectNewItem(item: DashboardListItem): void{
         this.selectedItem = item;
     }
 }

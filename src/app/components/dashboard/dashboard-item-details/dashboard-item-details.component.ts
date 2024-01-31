@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DashboardListItem } from '../../models/dashboard-list-item-model';
 import { CommonModule, NgFor } from '@angular/common';
-import { DashboardListComponent } from '../dashboard-list/dashboard-list.component';
+import { DashboardService } from '../../../services/dashboard-service/dashboard-service';
 
 @Component({
   selector: 'app-dashboard-item-details',
@@ -9,15 +9,13 @@ import { DashboardListComponent } from '../dashboard-list/dashboard-list.compone
   imports: [NgFor, CommonModule],
   templateUrl: './dashboard-item-details.component.html',
   styleUrl: './dashboard-item-details.component.css',
-  providers: [DashboardListComponent]
+  providers: [DashboardService]
 })
-export class DashboardItemDetailsComponent{
-  private _item: DashboardListItem = {} as DashboardListItem;
+export class DashboardItemDetailsComponent implements OnChanges{
+  constructor(private changeDetector: ChangeDetectorRef){}
   @Input()
-  set item(item: DashboardListItem){
-    this._item = item;
-  } 
-  get item(){
-    return this._item;
-  } 
+  public currentItem: DashboardListItem = {} as DashboardListItem;
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.changeDetector.detectChanges();
+  }
 }

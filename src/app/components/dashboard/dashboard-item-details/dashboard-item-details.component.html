@@ -1,16 +1,16 @@
-@if(item)
+@if(currentItem)
 {
     <div>
-        <p>{{item.artist}}</p>
-        @if(item.songs)
+        <p>{{currentItem.artist}}</p>
+        @if(currentItem.songs)
         {
             <div>
-                @for(song of item.songs; track song)
+                @for(song of currentItem.songs; track song)
                 {
                     <p>{{song}}</p>
                 }
             </div>
         }
-        <p>{{item.releaseDate}}</p>
+        <p>{{currentItem.releaseDate}}</p>
     </div>
 }
