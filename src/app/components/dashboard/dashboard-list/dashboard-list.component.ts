@@ -1,32 +1,22 @@
-import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
-import { DashboardService } from '../../../services/dashboard-service/dashboard-service';
-import { DashboardListItem } from '../../models/dashboard-list-item-model';
-import { Observable } from 'rxjs/internal/Observable';
-import { AsyncPipe } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { Subject } from 'rxjs';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {DashboardListItem} from '../../models/dashboard-list-item-model';
+import {AsyncPipe} from '@angular/common';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms';
 
-@Injectable()
 @Component({
   selector: 'app-dashboard-list',
   standalone: true,
   imports: [AsyncPipe, NgbModule, FormsModule],
   templateUrl: './dashboard-list.component.html',
   styleUrl: './dashboard-list.component.css',
-  providers: [DashboardService]
 })
-export class DashboardListComponent implements OnInit{
-  
-  constructor(private dashboardService: DashboardService){}
+export class DashboardListComponent {
+  @Input()
+  public items: DashboardListItem[] | null = null;
 
   @Output()
   public selectedItem: EventEmitter<DashboardListItem> = new EventEmitter();
-  public itemList: DashboardListItem[] = [];
-
-  public ngOnInit(): void {
-    this.dashboardService.items$.subscribe(items => this.itemList = items);
-  }
 
   public onItemClick(item: DashboardListItem): void{
     this.selectedItem.emit(item);
