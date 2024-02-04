@@ -1,16 +1,14 @@
-@if(currentItem)
-{
-    <div>
-        <p>{{currentItem.artist}}</p>
-        @if(currentItem.songs)
-        {
-            <div>
-                @for(song of currentItem.songs; track song)
-                {
-                    <p>{{song}}</p>
-                }
-            </div>
+@if (item) {
+  <div>
+    <p>{{ item.id }}</p>
+    <p>{{ item.artist }}</p>
+    @if (item.songs) {
+      <div>
+        @for (song of item.songs; track song) {
+          <p>{{ song }}</p>
         }
-        <p>{{currentItem.releaseDate}}</p>
-    </div>
+      </div>
+    }
+    <p>{{ item.releaseDate }}</p>
+  </div>
 }

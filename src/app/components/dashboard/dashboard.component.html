@@ -1,4 +1,4 @@
 <div>
-    <app-dashboard-list (selectedItem)="selectNewItem($event)"></app-dashboard-list>
-    <app-dashboard-item-details [currentItem]="selectedItem"></app-dashboard-item-details>
+  <app-dashboard-list (selectedItem)="selectNewItem($event)" [items]="item$ | async"></app-dashboard-list>
+  <app-dashboard-item-details [item]="item"></app-dashboard-item-details>
 </div>
